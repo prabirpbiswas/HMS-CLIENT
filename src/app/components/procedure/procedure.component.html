@@ -4,7 +4,7 @@
       class="card-header text-center border-0"
       style="background-color: #f2dcff"
     >
-      <h3>Procedure Registration</h3>
+      <h3>Procedure  {{ isUpdate ? "Update" : "Registration" }}</h3>
     </div>
     <div class="card-body border-0 center">
       <div class="row m-2">
@@ -16,9 +16,14 @@
             placeholder="Enter Name"
             formControlName="name"
             pattern="^[A-Za-z.\s]+$"
-            required />
-           <div *ngIf="procedureForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
-           </div>
+            required
+          />
+          <div
+            *ngIf="procedureForm.get('name').hasError('pattern')"
+            class="requiredField"
+          >
+            Only letters are allowed
+          </div>
         </div>
         <div class="col-md-1">
           <svg
@@ -71,8 +76,10 @@
           <button
             (click)="submitData(procedureFormData)"
             class="btn btn-outline-dark"
+            [disabled]="!procedureFormData.valid"
+
           >
-            {{isUpdate ? "Update": "Add Procedure"}}
+            {{ isUpdate ? "Update" : "Add Procedure" }}
           </button>
         </div>
         <div class="row m-2">

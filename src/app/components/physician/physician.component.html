@@ -4,7 +4,7 @@
       class="card-header text-center border-0"
       style="background-color: #f2dcff"
     >
-      <h3>Physician Registration</h3>
+      <h3>Physician {{ isUpdate ? "Update" : "Registration" }}</h3>
     </div>
     <div class="card-body border-0 center">
       <div class="row m-2">
@@ -116,6 +116,7 @@
           <button
             (click)="submitPhysician(physicianFormData)"
             class="btn btn-outline-dark"
+            [disabled]="!physicianFormData.valid"
           >
             {{ isUpdate ? "Update" : "Add Physician" }}
           </button>
